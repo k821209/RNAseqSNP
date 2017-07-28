@@ -2,8 +2,8 @@ SRA=SRR1686977
 ref=onion_rnaseq_ref.fasta
 dict=onion_rnaseq_ref.dict
 
-read1=$SRA_1.fastq.gz
-read2=$SRA_2.fastq.gz
+read1=${SRA}_1.fastq.gz
+read2=${SRA}_2.fastq.gz
 
 PICARD=/programs/picard/
 GATK=/programs/GATK/
