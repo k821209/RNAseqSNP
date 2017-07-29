@@ -35,7 +35,7 @@ cd ..
 ## Picard
 java -jar ${PICARD}/picard.jar AddOrReplaceReadGroups I=$runDir/Aligned.out.sam O=rg_added_sorted.bam SO=coordinate RGID=id RGLB=library RGPL=platform RGPU=machine RGSM=sample
 java -jar ${PICARD}/picard.jar MarkDuplicates I=rg_added_sorted.bam O=dedupped.bam  CREATE_INDEX=true VALIDATION_STRINGENCY=SILENT M=output.metrics
-samtools faidx onion_rnaseq_ref.fasta
+samtools faidx $ref
 java -jar ${PICARD}/picard.jar CreateSequenceDictionary R=$ref  O=$dict
 
 ##GATK
