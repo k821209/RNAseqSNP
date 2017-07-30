@@ -39,5 +39,6 @@ samtools faidx $ref
 java -jar ${PICARD}/picard.jar CreateSequenceDictionary R=$ref  O=$dict
 
 ##GATK
+java -jar ${GATK}/GenomeAnalysisTK.jar -T SplitNCigarReads -R $ref -I dedupped.bam -o split.bam -rf ReassignOneMappingQuality -RMQF 255 -RMQT 60 -U ALLOW_N_CIGAR_READS
 java -jar ${GATK}/GenomeAnalysisTK.jar -T HaplotypeCaller -R $ref -I split.bam -dontUseSoftClippedBases -stand_call_conf 20.0 -stand_emit_conf 20.0 -o output.vcf
 java -jar ${GATK}/GenomeAnalysisTK.jar -T VariantFiltration -R $ref -V output.vcf -window 35 -cluster 3 -filterName FS -filter "FS > 30.0" -filterName QD -filter "QD < 2.0" -o output.final.vcf
